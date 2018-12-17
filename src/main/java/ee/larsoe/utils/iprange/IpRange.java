@@ -3,7 +3,12 @@ package ee.larsoe.utils.iprange;
 import java.net.InetAddress;
 import java.net.UnknownHostException;
 
-public class IpRange {
+class IpRange {
+
+    private IpRange() {
+        // private, empty constructor
+    }
+
     /**
      * Returns whether the caller's IP address is located outside the internal IP range.
      * <p>
@@ -19,7 +24,7 @@ public class IpRange {
      * @return true if caller IP is located within the internal IP ranges
      * @throws UnknownHostException in case the caller IP is malformed/invalid
      */
-    public boolean isPrivateIpRange(String callerIp) throws UnknownHostException {
+    static boolean isPrivateIpRange(String callerIp) throws UnknownHostException {
         byte[] ipBytes;
         ipBytes = InetAddress.getByName(callerIp).getAddress();
         int[] ip = new int[ipBytes.length];
